@@ -1,0 +1,6 @@
+name = "cloudflare2020-jainam-soni"
+type = "javascript"
+account_id = "48b7be5dcbdfdccc7e11b6600eb36c8c"
+workers_dev = true
+route = ""
+zone_id = ""
