@@ -1,3 +1,5 @@
+const Router = require('./router');
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -105,6 +107,30 @@ async function htmlHander() {
  */
 async function handleRequest(request) {
 
+  const r = new Router()
+    // Replace with the appropriate paths and handlers
+    r.get('/links', () => getLinks())
+    r.get('/', () => slash())
+    const resp = await r.route(request)
+    return resp  
+}
+
+function getLinks() {
+  // array = [
+  //     { "name": "Link Name", "url": "https://linkurl" },
+  //     { "name": "Link Name1", "url": "https://linkurl1" },
+  //     { "name": "Link Name2", "url": "https://linkurl2" }
+  // ]
+
+  const init = {
+      headers: { 'content-type': 'application/json' },
+  }
+
+  const body = JSON.stringify({ 'links': links })
+  return new Response(body, init)
+}
+
+async function slash(){
   try {
     const init = {
       method: 'GET',
